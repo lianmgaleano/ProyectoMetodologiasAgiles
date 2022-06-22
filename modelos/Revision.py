@@ -1,4 +1,4 @@
-import database.db as db
+import basedatos.bd as bd
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime,func
 from sqlalchemy.orm import relationship
 
@@ -10,7 +10,7 @@ from sqlalchemy.orm import relationship
     Se crea el controlador de la clase 
     Se crea método para retornar el id de un vehículo
 """
-class Revision(db.Base):
+class Revision(bd.Base):
 
     __tablename__ = 'revisiones'
 
