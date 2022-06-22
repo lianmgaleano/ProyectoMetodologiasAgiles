@@ -1,4 +1,4 @@
-# Proyecto Metodologias Agiles
+# Proyecto Metodologias ágiles
 
 Desarrollado por Grupo 3 de la [Universidad Autonoma de Manizales](https://www.autonoma.edu.co/)
 
