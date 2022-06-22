@@ -1,4 +1,4 @@
-import database.db as db
+import basedatos.bd as bd
 from modelos.Persona import Persona
 from modelos.Vehiculo import Vehiculo
 from modelos.Revision import Revision
