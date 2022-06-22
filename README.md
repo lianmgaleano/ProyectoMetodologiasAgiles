@@ -36,5 +36,5 @@ $ pip install -r requirements.txt
 ## Integrantes
 
 - Natalia Marcela Cardenas
-- Julian Betancurt
+- Julian Betancur
 - Libardo Morales
