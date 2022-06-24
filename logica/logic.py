@@ -1,7 +1,10 @@
 import basedatos.bd as bd
-from modelos.Persona import Persona
 from modelos.Vehiculo import Vehiculo
 from modelos.Revision import Revision
+from modelos.Seguro import Seguro
+from modelos.Repuesto import Repuesto
+from modelos.Vehiculo_Seguro import Vehiculo_Seguro
+from modelos.Revision_Repuesto import Revision_Repuesto
 from datetime import datetime
 from sqlalchemy import extract
 
@@ -39,6 +42,8 @@ def get_help_message ():
                 "*/start* - Inicia la interacción con el bot (obligatorio)\n"
                 "*/help* - Muestra este mensaje de ayuda\n"
                 "*/about* - Muestra detalles de esta aplicación\n"
+                "*registrar mecánico* - Permite el registro de un mecánico\n"
+                "*registrar dueño* - Permite el registro de un dueño\n"
                 )
     return response
 
@@ -48,3 +53,5 @@ def get_help_message ():
 def get_fallback_message (text):
     response = f"\U0001F648 No entendí lo que me acabas de decir"
     return response
+
+########################################################
