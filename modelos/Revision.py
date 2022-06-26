@@ -23,6 +23,7 @@ class Revision(bd.Base):
     fecha = Column('fecha', DateTime, server_default=func.now(),nullable=True)
 
     vehiculos = relationship('Vehiculo', back_populates='revisiones')
+    revisiones_repuestos = relationship('Revision_Repuesto', back_populates='revisiones')
     
     def __init__(self, id_revision, vehiculo_id, nivel_aceite, nivel_liquido_frenos, nivel_refrigerante, nivel_liquido_direccion, fecha):
         self.id_revision = id_revision

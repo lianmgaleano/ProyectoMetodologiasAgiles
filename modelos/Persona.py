@@ -1,5 +1,5 @@
 import basedatos.bd as bd
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, String, Integer
 from sqlalchemy.orm import relationship
 
 """Se crea la clase equivalente a la entidad Persona para posteriormente ser creada en la base de datos
@@ -18,13 +18,13 @@ class Persona(bd.Base):
     nombre_completo = Column('nombre_completo', String(100), nullable=False)
     tipo_persona = Column('tipo_persona', String(1), nullable=False)
 
-    vehiculos = relationship('Vehiculo', back_populates='personas')
-    
-    def __init__(self, id_persona, documento, nombre_completo, tipo_persona):
-        self.id_persona = id_persona
+    vehiculos = relationship('Vehiculo', back_populates='personas',primaryjoin="Persona.id_persona == Vehiculo.dueno_id")
+    mecanicos_vehiculos = relationship('Vehiculo', back_populates='personas',primaryjoin="Persona.id_persona == Vehiculo.mecanico_id")
+
+    def __init__(self, documento, nombre_completo, tipo_persona):
         self.documento = documento
         self.nombre_completo = nombre_completo
         self.tipo_persona = tipo_persona
 
     def __repr__(self):
-        return f"<Persona {self.id_persona}>"
+        return f"<Persona {self.documento}>"
