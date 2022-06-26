@@ -26,7 +26,7 @@ def on_command_start(message):
 
     bot.send_message(
         message.chat.id,
-        logic.get_help_message(),
+        logic.get_help_message(message.from_user.id),
         parse_mode="Markdown")
 
     #logic.register_account(message.from_user.id)
@@ -84,7 +84,7 @@ def on_command_help(message):
 
     bot.send_message(
         message.chat.id,
-        logic.get_help_message(),
+        logic.get_help_message(message.from_user.id),
         parse_mode="Markdown") 
 
 #########################################################
