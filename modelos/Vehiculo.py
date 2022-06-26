@@ -7,7 +7,7 @@ from sqlalchemy.orm import relationship
     Se crean cada uno de los campos con sus respectivos tipos de datos y condicionales.
     Se asignan las llaves foráneas
     Se crea el camino bidireccional con la tabla persona y con la tabla revisión
-    Se crea el consturctor de la clase 
+    Se crea el constructor de la clase 
     Se crea método para retornar el id de un vehículo
 """
 class Vehiculo(bd.Base):
