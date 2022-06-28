@@ -4,12 +4,13 @@ from time import sleep
 import re
 import logica.logic as logic
 from logica.logicaPersona import LogicaPersona
+from logica.logicaVehiculo import LogicaVehiculo
 import basedatos.bd as bd
 
 #########################################################
 
 if __name__ == '__main__':
-     bd.Base.metadata.create_all( bd.engine)
+    bd.Base.metadata.create_all( bd.engine)
 
 #########################################################
 
@@ -18,7 +19,7 @@ if __name__ == '__main__':
 def on_command_start(message):
     bot.send_chat_action(message.chat.id, 'typing')
     sleep(1)
-
+    
     bot.send_message(
         message.chat.id,
         logic.get_welcome_message(bot.get_me()),
@@ -73,6 +74,26 @@ def on_registrar_dueno(message):
     bot.reply_to(message,f"\U0001F9D4 ¡Dueño registrado!" 
                     if control == True 
                     else "\U000026A0 El dueño ya se encuentra registrado, ejecuta /start y vuelve a intentarlo" )
+
+#########################################################
+
+#Registrar Vehículo
+@bot.message_handler(regexp=r"^(registrar vehículo|rv) ([a-zA-Z0-9]{6,10}), ([a-zA-Z0-9Á-Ü,\s]{6,10}), ([a-zA-Z0-9Á-Ü,\s]{6,15})$")
+def on_registrar_dueno(message):
+    bot.send_chat_action(message.chat.id, 'typing')
+    sleep(1)
+
+    parts = re.match(
+        r"^(registrar vehículo|rv) ([a-zA-Z0-9]{6,10}), ([a-zA-Z0-9Á-Ü,\s]{6,10}), ([a-zA-Z0-9Á-Ü,\s]{6,15})$",
+        message.text,
+        flags=re.IGNORECASE)
+
+    placa = parts[2]
+    tipoVehiculo = parts[3]
+    dueno = parts[4]
+    control = LogicaVehiculo.registrar_vehiculo (placa, tipoVehiculo, dueno)
+    
+    bot.reply_to(message, control)
 
 #########################################################
 
