@@ -25,8 +25,7 @@ class Vehiculo(bd.Base):
     revisiones = relationship('Revision', back_populates='vehiculos')
     vehiculos_seguros = relationship('Vehiculo_Seguro', back_populates ='vehiculos')
 
-    def __init__(self, id_vehiculo, placa, tipo_vehiculo, dueno_id):
-        self.id_vehiculo = id_vehiculo
+    def __init__(self, placa, tipo_vehiculo, dueno_id):
         self.placa = placa
         self.tipo_vehiculo = tipo_vehiculo
         self.dueno_id = dueno_id
