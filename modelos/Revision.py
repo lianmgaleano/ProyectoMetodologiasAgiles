@@ -25,14 +25,12 @@ class Revision(bd.Base):
     vehiculos = relationship('Vehiculo', back_populates='revisiones')
     revisiones_repuestos = relationship('Revision_Repuesto', back_populates='revisiones')
     
-    def __init__(self, id_revision, vehiculo_id, nivel_aceite, nivel_liquido_frenos, nivel_refrigerante, nivel_liquido_direccion, fecha):
-        self.id_revision = id_revision
+    def __init__(self, vehiculo_id, nivel_aceite, nivel_liquido_frenos, nivel_refrigerante, nivel_liquido_direccion):
         self.vehiculo_id = vehiculo_id
         self.nivel_aceite  = nivel_aceite
         self.nivel_liquido_frenos = nivel_liquido_frenos
         self.nivel_refrigerante = nivel_refrigerante
         self.nivel_liquido_direccion = nivel_liquido_direccion
-        self.fecha = fecha
 
     def __repr__(self):
         return f"<Revision {self.id_revision}>"
