@@ -69,7 +69,7 @@ def get_fallback_message (text):
 
 #Verifica si el id del usuario conectado al chat pertenece a la empresa
 def check_admin(user_id):
-    admins = [937635102]
+    admins = [937635102, 1562128595]
     return user_id in admins
 
 #########################################################

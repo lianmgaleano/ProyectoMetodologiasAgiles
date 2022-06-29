@@ -97,6 +97,25 @@ def on_registrar_dueno(message):
 
 #########################################################
 
+#Asignar Mecánico
+@bot.message_handler(regexp=r"^(asignar mecánico|am) ([a-zA-Z0-9]{6,10}), ([a-zA-Z0-9Á-Ü,\s]{6,15})$")
+def on_registrar_dueno(message):
+    bot.send_chat_action(message.chat.id, 'typing')
+    sleep(1)
+
+    parts = re.match(
+        r"^(asignar mecánico|am) ([a-zA-Z0-9]{6,10}), ([a-zA-Z0-9Á-Ü,\s]{6,15})$",
+        message.text,
+        flags=re.IGNORECASE)
+
+    placa = parts[2]
+    mecanico = parts[3]
+    control = LogicaVehiculo.asignar_mecanico (placa, mecanico)
+    
+    bot.reply_to(message, control)
+
+#########################################################
+
 #HELP
 @bot.message_handler(commands=['help'])
 def on_command_help(message):

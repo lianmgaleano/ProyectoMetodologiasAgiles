@@ -37,6 +37,30 @@ class LogicaVehiculo:
         bd.session.commit()
         
         return "Se ha agregado el vehículo exitosamente"
+    
+    def asignar_mecanico(placa, mecanico):
+        """ Asignar mecánico: se verifica la existencia de la placa ingresado y documento del mecánico
+            Si la placa no se encuentra registrada se retorna mensaje con el detalle
+            Si el documento del mecanico no se encuentra se retorna un mensaje con el detalle
+            Se actualiza el registro en la tabla vehiculos,
+            Se hace commit y se retorna Mensaje """
+            
+        vehiculo = bd.session.query(Vehiculo).filter(Vehiculo.placa == placa).first()
+        bd.session.commit()
+        
+        if vehiculo == None:
+            return "La placa "+ placa + " no se encuentra registrada"
+        
+        persona = bd.session.query(Persona).filter(and_(Persona.documento == mecanico, Persona.tipo_persona == "2")).first()
+        bd.session.commit()
+        
+        if persona == None:
+            return "El mecánico con documento " + mecanico + " no se encuentra registrado"
+        
+        bd.session.query(Vehiculo).filter(Vehiculo.placa == placa).update({'mecanico_id': persona.id_persona})
+        bd.session.commit()
+        
+        return "Se ha asignado el mecánico al vehículo exitosamente"
 
 #########################################################
 
