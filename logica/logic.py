@@ -80,3 +80,14 @@ def check_mechanic(user_id):
     return user_id in mecanicos
 
 #########################################################
+
+#Retorna el id_persona correspondiente al mecanico
+def get_mechanic(user_id):
+    mecanicos = {
+        "937635102": 1,
+        "1562128595": 6
+    }
+    
+    return mecanicos[user_id] if (user_id in mecanicos) == True else False
+
+#########################################################
