@@ -5,6 +5,7 @@ import re
 import logica.logic as logic
 from logica.logicaPersona import LogicaPersona
 from logica.logicaVehiculo import LogicaVehiculo
+from logica.logicaRevision import LogicaRevision
 import basedatos.bd as bd
 
 #########################################################
@@ -111,6 +112,29 @@ def on_registrar_dueno(message):
     placa = parts[2]
     mecanico = parts[3]
     control = LogicaVehiculo.asignar_mecanico (placa, mecanico)
+    
+    bot.reply_to(message, control)
+
+#########################################################
+
+#Registrar Revisión
+@bot.message_handler(regexp=r"^(registrar revisión|rr) ([a-zA-Z0-9]{6,10}), ([0-9]{1,10}), ([0-9]{1,10}), ([0-9]{1,10}), ([0-9]{1,10})$")
+def on_registrar_dueno(message):
+    bot.send_chat_action(message.chat.id, 'typing')
+    sleep(1)
+
+    parts = re.match(
+        r"^(registrar revisión|rr) ([a-zA-Z0-9]{6,10}), ([0-9]{1,10}), ([0-9]{1,10}), ([0-9]{1,10}), ([0-9]{1,10})$",
+        message.text,
+        flags=re.IGNORECASE)
+
+    placa = parts[2]
+    aceite  = parts[3]
+    frenos  = parts[4]
+    refrigerante  = parts[5]
+    direccion  = parts[6]
+    
+    control = LogicaRevision.registrar_revision (message.from_user.id, placa, aceite, frenos, refrigerante, direccion)
     
     bot.reply_to(message, control)
 
