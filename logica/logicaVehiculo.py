@@ -6,11 +6,12 @@ from sqlalchemy import extract, and_
 class LogicaVehiculo:
 
     def registrar_vehiculo(placa, tipo_vehiculo, dueno):
-        """ Registrar vehiculo: se verifica la existencia del documento ingresado y del tipo de persona
-            Si la persona ya se encuentra registrada se retorna False
-            Si la persona no se encuentra registrada se crea el objeto persona,
-            Se agrega el registro a la tabla personas,
-            Se hace commit y se retorna True """
+        """ Registrar vehiculo: se verifica la existencia de la placa ingresado, tipo de vehículo y documento del dueño
+            Si la placa ya se encuentra registrada se retorna mensaje con el detalle
+            Si el tipo de vehículo no se encuentra dentro de los posibles se retorna un mensaje con el detalle
+            Si el documento del dueño no se encuentra se retorna un mensaje con el detalle
+            Se agrega el registro a la tabla vehiculos,
+            Se hace commit y se retorna Mensaje """
         
         vehiculo = bd.session.query(Vehiculo).filter(Vehiculo.placa == placa).first()
         bd.session.commit()
