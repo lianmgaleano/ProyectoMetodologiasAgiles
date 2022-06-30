@@ -7,11 +7,11 @@ from sqlalchemy import extract, and_
 class LogicaRevision:
 
     def registrar_revision(user_id, placa, aceite, frenos, refrigerante, direccion):
-        """ Registrar persona: se verifica la existencia del documento ingresado y del tipo de persona
-            Si la persona ya se encuentra registrada se retorna False
-            Si la persona no se encuentra registrada se crea el objeto persona,
-            Se agrega el registro a la tabla personas,
-            Se hace commit y se retorna True """
+        """ Registrar persona: se verifica si es mecánico y tiene permiso para realizar revisiones
+             Si no tiene los permisos se retorna un mensaje notificando que no tiene permitido realizar revisiones
+             Si el vehiculo no existe se retorna un mensaje diciendo que el vehiculo no existe
+             Se hace el registro a la tabla revisiones
+             Se hace commit y se retorna Mensaje"""
         
         id_persona = logic.get_mechanic(str(user_id))
         
