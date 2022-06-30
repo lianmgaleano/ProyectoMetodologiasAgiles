@@ -50,11 +50,10 @@ def get_help_message (user_id):
                 "*registrar dueño* - Permite el registro de un dueño\n"
                 "*registrar vehículo* - Permite el registro de un vehículo\n"
                 "*asignar mecánico* - Permite asignar un mecanico a un vehículo\n"
-                "*registrar revisión* - Permite registrar revisión de un vehículo\n"
                 )
     elif check_mechanic(user_id):
         response += (
-                "*registrar niveles* - Registrar los niveles de líquidos de los vehículos\n"
+                "*registrar revisión* - Registrar los niveles de líquidos de los vehículos\n"
                 )
     
     return response
